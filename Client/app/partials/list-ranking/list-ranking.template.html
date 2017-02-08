@@ -1,0 +1,32 @@
+<section class="container">
+    <div class="col-sm-12">
+        <div class="row">
+            <div class="col-sm-12">
+                <h2 class="page-heading">Ranking list</h2>
+
+                <div class="rates-wrapper rates--full">
+                  <div id="favspinner" class="hidden">
+                  <span us-spinner spinner-key="spinner-fav" spinner-start-active="true"></span>
+                  </div>
+                    <table>
+                        <colgroup class="col-width-lg">
+                        <colgroup class="col-width">
+                        <colgroup class="col-width-sm">
+                        <colgroup class="col-width">
+
+                        <tr ng-repeat="list in ListRanking.allLists | orderBy:'-likes'" class="rates" ng-class="{ 'rates--top': $index < 3}">
+                              <td class="rates__obj"><a href="" class="rates__obj-name" disabled>{{$index+1}}. {{list.name}}</a></td>
+                              <td class="rates__vote">{{list.likes+list.disLikes}} głosów</td>
+                              <td class="rates__result">{{list.likes}}/{{list.disLikes}}</td>
+                              <td class="rates__author">Autor: {{list.user.userName}}</td>
+                          </tr>
+                    </table>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<div class="clearfix"></div>

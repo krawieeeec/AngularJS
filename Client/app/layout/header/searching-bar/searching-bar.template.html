@@ -1,0 +1,30 @@
+<div class="search-wrapper">
+    <div class="container container--add">
+      <a ng-click="helpToggle=!helpToggle;"><i class="fa fa-question-circle search__helper"></i></a>
+        <form id='search-form' method='get' class="search">
+            <input type="text" class="search__field" placeholder="Wpisz frazy, które według Ciebie definiują film" ng-model="SearchingBar.searchedTerm"></input>
+            <button type='submit' ng-click="SearchingBar.Send(SearchingBar.searchedTerm)"
+            class="btn btn-md btn--danger search__button" ng-disabled="(SearchingBar.searchedTerm == '')" >Wyszukaj!</button>
+        </form>
+    </div>
+    <div id="searchHelper" class="overlay overlay-hugeinc close" ng-class="{'open': helpToggle, 'close': !helpToggle}">
+
+                <section class="container">
+
+                    <div class="col-sm-6 col-sm-offset-3">
+
+                        <button type="button" class="overlay-close" ng-click="helpToggle=!helpToggle">Close</button>
+                        <div style="background: white;padding: 20px;">
+                          <ul style="list-style: inherit;">
+                          <b>Wskazówki odnośnie wyszukiwania:</b></br>
+<li> Możesz wpisać to czego oczekujesz od filmu, np. <i>Podróże, Klasyka, Horry</i> itp. </li>
+<li> Możesz przeglądać filmy według gatunków, wystarczy, że wpiszesz nazwę gatunku</li>
+<li> Możesz również wyszukać filmy według aktorów. Wystarczy wpisać frazę <i>Filmy z Imię Nazwisko</i>, przykładowo <i>Filmy z John Travolta</i></li>
+</ul>
+                        </div>
+
+                    </div>
+
+                </section>
+            </div>
+</div>

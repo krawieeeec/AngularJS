@@ -1,0 +1,62 @@
+<div growl></div>
+<section class="container">
+      <div class="col-sm-12">
+
+          <h2 class="page-heading">Ulubione</h2>
+          <div id="noFav" class="content-wrapper specific--wrapper hidden">
+                <div class="container">
+                    <div class="heading--outcontainer">
+                        <h1 style="text-align: center;" class="unslyled">Trochę tu pusto...</h1>
+
+                    </div>
+                </div>
+            </div>
+        <div class="tabs tabs--vertical">
+                      <!-- Nav tabs -->
+                      <ul class="nav nav-tabs" id="vTab">
+                        <li ng-repeat="fav in FavoriteUserList.userFavouritesLists" id="link{{fav.id}}" ng-class="{ active: $index == 0}"><a target="_self" ng-click="FavoriteUserList.ShowList(fav)" href="#list{{fav.id}}" data-toggle="tab">{{fav.name}} <i ng-click="FavoriteUserList.RemoveFavorite(fav.id)" class="fa fa-times-circle fav-delete"></i></a>
+                        </li>
+                      </ul>
+
+                      <!-- Tab panes -->
+                      <div class="tab-content">
+                        <div id="favspinner" class="hidden">
+                        <span us-spinner spinner-key="spinner-fav" spinner-start-active="true"></span>
+                        </div>
+                        <div ng-repeat="fav in FavoriteUserList.userFavouritesLists" ng-class="{ active: $index == 0}" class="tab-pane" id="list{{fav.id}}">
+                          <div ng-repeat="film in FavoriteUserList.List.films">
+                        <!-- Movie variant with time -->
+                            <div class="movie movie--test movie--test--dark movie--test--left">
+                                <div class="movie__images big">
+                                    <a ui-sref="showDetailsFilm({filmId: film.id})" class="movie-beta__link">
+                                        <img alt="" src="{{film.cover}}">
+                                    </a>
+                                </div>
+
+                                <div class="movie__info">
+                                    <a ui-sref="showDetailsFilm({filmId: film.id})" class="movie__title">{{film.name}}</a><br/><br/>
+
+                                    <p class="movie__option">{{film.releaseDate}}</p>
+                                    <p class="movie__option">Gatunek: <a href="">{{film.genre}}</a></p><br/>
+
+                                    <p class="movie__option">Opis: {{film.description}}... <a ui-sref="showDetailsFilm({filmId: film.id})">Szczegoły</a></p>
+
+                                    <div class="movie__rate">
+                                      <a ng-click="FavoriteUserList.Vote(film, fav)"><span id="ratingL{{fav.id}}F{{film.id}}" class="movie__rating" ng-class="{true: 'isVoted', false: 'noVoted'}[{{film.isVoted}}]"><i class="fa fa-thumbs-o-up"></i>{{film.votes}}</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                         <!-- Movie variant with time -->
+
+                         <div ng-if="$index % 2 == 1" class="clearfix"></div>
+
+                       </div>
+                        </div>
+                        <div class="clearfix"></div>
+                      </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="clearfix"></div>

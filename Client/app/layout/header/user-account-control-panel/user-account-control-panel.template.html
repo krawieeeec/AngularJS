@@ -1,0 +1,16 @@
+<div class="control-panel" ng-show="UserControlPanel.isLogged">
+    <div class="auth auth--home">
+        <div class="auth__show">
+        </div>
+        <a class="btn btn--sign btn--singin" ng-click="auth__menu = !auth__menu">
+                  Twój profil
+              </a>
+        <ul class="auth__function" ng-class="{'open-function': auth__menu, 'close-function': !auth__menu}">
+            <li><a ng-click="auth__menu = !auth__menu" ui-sref="editUserAccount" class="auth__function-item">Panel użytkownika</a></li>
+            <li><a ng-click="auth__menu = !auth__menu" ui-sref="ownUserList" class="auth__function-item">Twoje listy</a></li>
+            <li><a ng-click="auth__menu = !auth__menu" ui-sref="favoriteUserList" class="auth__function-item">Ulubione</a></li>
+            <li ng-show="UserControlPanel.isAdmin"><a ng-click="auth__menu = !auth__menu" ui-sref="adminPanel" class="auth__function-item">Panel administratora</a></li>
+            <li ng-show="UserControlPanel.isModerator"><a ng-click="auth__menu = !auth__menu" ui-sref="moderatorPanel" class="auth__function-item">Panel moderatora</a></li>
+        </ul>
+    </div>
+</div>

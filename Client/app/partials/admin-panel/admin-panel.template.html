@@ -1,0 +1,59 @@
+<div growl></div>
+
+<section class="container">
+  <div class="col-sm-12">
+    <h2 class="page-heading">Panel admina</h2>
+    <div class="tabs tabs--horisontal">
+      <!-- Nav tabs -->
+      <ul class="nav nav-tabs" id="hTab">
+        <div id="spinner1" class="hidden">
+            <span us-spinner spinner-key="spinner-fav1" spinner-start-active="true"></span>
+            </div>
+        <!-- <li class="active"><a target="_self" href="#editFilm" data-toggle="tab">Edytuj film</a></li>
+        <li class=""><a target="_self" href="#addFilm" data-toggle="tab">Dodaj film</a></li> -->
+        <li class="active"><a target="_self" href="#deleteUser" data-toggle="tab">Usuń użytkownika</a></li>
+        <li class=""><a target="_self" href="#setRole" data-toggle="tab">Nadaj prawa</a></li>
+      </ul>
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <!-- <div class="tab-pane active" id="editFilm">
+        </div>
+        <div class="tab-pane" id="addFilm">
+        </div> -->
+        <div class="tab-pane active" id="deleteUser" >
+          
+          <div style="text-align: center; position: relative;">
+            
+          <select ui-select2 ng-model="Admin.userToDelete" data-placeholder="Wybierz uzytkownika..." style="width:300px;">
+              <option value=""></option>
+              <option ng-repeat="user in Admin.AllUsers" value="{{user.userName}}">{{user.userName}}</option>
+          </select>
+          <a href="" ng-disabled="Admin.userToDelete == undefined || Admin.disableButton" ng-click="Admin.DeleteUser(Admin.userToDelete)" class="btn btn-md btn--danger">Usuń użytkownika</a>
+        </div>
+        </div>
+        <div class="tab-pane" id="setRole">
+          <div style="text-align: center; position: relative;">
+            <div style="text-align: center; position: relative;">
+            <div id="spinner2" class="hidden">
+              <span us-spinner spinner-key="spinner-fav2" spinner-start-active="true"></span>
+              </div>    
+            <select ui-select2 ng-model="Admin.userName" data-placeholder="Wybierz uzytkownika..." style="width:300px;">
+                <option value=""></option>
+                <option ng-repeat="user in Admin.AllUsers" value="{{user.userName}}">{{user.userName}}</option>
+            </select>
+          <form name="form" style="padding:20px;" >
+            
+            <input type="checkbox" ng-model="Admin.userRole.admin" name="newRole" value="Admin">
+            Admin
+            <input type="checkbox" ng-model="Admin.userRole.moderator"name="newRole" value="Moderator">
+            Moderator
+            </form>
+          <!-- <span ng-show="changeNameList.listOfName.$error.required && !Creator.showError" style="color:red"><The></The> Wymagana jest nazwa listy.</span> -->
+          <a href="" ng-disabled="Admin.userName == undefined || Admin.disableButton == true" ng-click="Admin.SetRole(Admin.userName, Admin.userRole)" class="btn btn-md btn--danger">Nadaj role</a>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="clearfix"></div>

@@ -1,0 +1,107 @@
+<!-- Main content -->
+<div growl></div>
+<div class="clearfix"></div>
+<section class="container">
+    <h1 class="unslyled">Proponowane listy: </h1>
+    <div id="spinner" class="spinner">
+        <span us-spinner spinner-key="spinner-1" spinner-start-active="true"></span>
+    </div>
+    <div ng-repeat="list in MainPage.TopLists track by $index" ng-init="listIndex = $index" class="col-sm-12">
+        <h2 class="page-heading">{{list.name}}</h2>
+        <a ng-click=" MainPage.AddToFavourites(list)" class="watchlist">Dodaj do ulubionych</a>
+        &nbsp;
+        <button id="likesL{{list.id}}" class="social-like" ng-class="{'isVoted': list.voted == 1}" ng-click="MainPage.VoteListLike(list)">
+          <span class="like"><i class="fa fa-thumbs-o-up"></i></span>
+          <span class="count">{{list.likes}}</span>
+        </button>
+        &nbsp;
+        &nbsp;
+        <button id="dislikesL{{list.id}}" class="social-dislike" ng-class="{'isVoted': list.voted == -1}" ng-click="MainPage.VoteListDislike(list)" ng-disabled="list.isFavorite">
+          <span class="dislike">{{list.disLikes}}</span>
+          <span class="like"><i class="fa fa-thumbs-o-down"></i></span>
+        </button>
+        
+        <!-- Movie preview item -->
+<<<<<<< HEAD
+        <div class="movie movie--preview movie--full release" 
+        ng-animate=" 'slide' " ng-repeat="film in list.films | limitTo: 1" ng-init = "index = 0;  votes = MainPage.voteLists[listIndex].films[index].votes">                         
+            
+=======
+        <div class="movie movie--preview movie--full release" ng-init = "index = 0;  votes = film.votes" ng-animate=" 'slide' " ng-repeat="film in list.films | limitTo: 1">
+
+>>>>>>> 3f4fc4b5c692ab65f30d6d64c825a1e53cd25783
+            <div class="col-sm-3 col-md-2 col-lg-2">
+                <div class="movie__images">
+                    <img alt='' src="{{film.cover}}">
+                </div>
+            </div>
+            <div class="col-sm-9 col-md-10 col-lg-10 movie__about">
+                <a ui-sref="showDetailsFilm({filmId: film.id})" id="filmName_{{film.id}}" class="movie__title link--huge">{{film.name}}</a>
+                <p class="movie__option"><strong>Kategoria: </strong><a href="#">{{film.genre}}</a></p>
+                <p class="movie__option"><strong>Wydany: </strong>{{film.releaseDate}}</p>
+                <div class="movie__btns">
+                    <a class="btn btn-md btn--warning" ng-click="MainPage.ShowCreator(film)">Dodaj do swojej listy</a>
+                </div>
+                <div class="preview-footer">
+                    <div class="movie__rate">
+                      
+                        <div class="score"><span class="movie__rate-number">Film pasuje do listy?</span></div>
+                        <a  ng-init="voted=MainPage.voteLists[listIndex].films[index].isVoted"
+                        ng-click="film = MainPage.Vote(film, list); 
+                        votes = MainPage.voteLists[listIndex].films[index].votes; 
+                        voted =  MainPage.voteLists[listIndex].films[index].isVoted">
+                        
+                        <span id="ratingL{{list.id}}F{{film.id}}" 
+
+                        class="movie__rating" ng-class="{true:'isVoted', false:'noVoted'}[voted]"><i class="fa fa-thumbs-o-up"></i>{{votes}}
+                        </span></a>
+                        <a data-toggle="collapse" data-target="#desc{{film.id}}" class="movie__show-btn">Opis</a>
+                    </div>
+                    <div id="desc{{film.id}}" class="collapse">
+                        <div class="movie__description">
+                            {{film.description}}... <a ui-sref="showDetailsFilm({filmId: film.id})">Szczegóły filmu</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="coloum-wrapper">
+            <div class="pagination paginatioon--full" ng-init = "last = MainPage.lastFilm(list.id, index)">
+
+                <button class="pagination__prev"
+                ng-click="index = index - 1;
+                film = MainPage.foo(list.id, index);
+                MainPage.currentIndexFilm = MainPage.currentIndexFilm - 1;
+                voted =  MainPage.voteLists[MainPage.currentIndexList].films[index].isVoted;
+                votes = MainPage.voteLists[MainPage.currentIndexList].films[index].votes"
+                ng-hide="index == 0">Poprzednie</button>
+                <button class="pagination__next"
+                ng-click="index = index + 1;
+                last = MainPage.lastFilm(list.id, index);
+                film = MainPage.foo(list.id, index);
+                MainPage.currentIndexFilm = MainPage.currentIndexFilm + 1;
+                voted =  MainPage.voteLists[MainPage.currentIndexList].films[index].isVoted;
+                votes = MainPage.voteLists[MainPage.currentIndexList].films[index].votes"
+
+                ng-hide="index == last">Następne</button>
+
+            </div>
+        </div>
+        </div>
+
+        <!-- end movie preview item -->
+
+        <!-- end movie preview item -->
+    </div>
+
+</section>
+<div class="clearfix" ></div>
+<div id="loginModal" class="overlay overlay-hugeinc" ng-class="{'close': MainPage.isLogged == true,
+'open': MainPage.isLogged == false && MainPage.openModal == true}">
+    <section class="container">
+        <div class="col-sm-6 col-sm-offset-3">
+            <button ng-click="MainPage.CloseModal()" type="button" class="overlay-close">Close</button>
+            <user-login is-logged="MainPage.isLogged" on-view-change="MainPage.isLogged = $event.isLogged"></user-login>
+        </div>
+    </section>
+</div>

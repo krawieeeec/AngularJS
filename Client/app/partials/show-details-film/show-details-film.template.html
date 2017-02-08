@@ -1,0 +1,30 @@
+<div class="wrapper">
+    <!-- Main content -->
+    <section class="container">
+        <div class="col-sm-12">
+            <div class="movie">
+                <h2 class="page-heading">{{Film.DetailsOfFilm.name}}</h2>
+                <div class="movie__info">
+                    <div class="col-sm-4 col-md-3 movie-mobile" style="width: 185px;">
+                        <div class="movie__images">
+                            <img src="{{Film.DetailsOfFilm.cover}}">
+                        </div>
+                    </div>
+                    <div class="col-sm-8 col-md-9">
+                        <p class="movie__option"><strong>Kategoria: </strong><a>{{Film.DetailsOfFilm.genre}}</a></p>
+                        <p class="movie__option"><strong>Wydany: </strong>{{Film.DetailsOfFilm.releaseDate}}</p>
+                        <p class="movie__option"><strong>Reżyseria: </strong><a ng-repeat="director in Film.DetailsOfFilm.directors">{{director.name}}, </a></p>
+                        <p class="movie__option"><strong>Aktorzy: </strong><a ng-repeat="actor in Film.DetailsOfFilm.actors">{{actor.name}}, </a>
+                            <div class="movie__btns movie__btns--full">
+                                <a ng-click="Film.ShowCreator(Film.DetailsOfFilm)" class="btn btn-md btn--warning">Dodaj do swojej listy</a>
+                            </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <h2 class="page-heading">Opis</h2>
+                <p class="movie__describe">{{Film.DetailsOfFilm.description}}</p>
+            </div>
+        </div>
+    </section>
+    <div class="clearfix"></div>
+</div>

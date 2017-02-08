@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <title>Moodies</title>
+    <!-- Mobile Specific Metas-->
+    <meta name="viewport" content="width=768">
+    <meta content="telephone=no" name="format-detection">
+    <!-- Fonts -->
+    <link href="assets/fonts/font-awesome.css" rel="stylesheet">
+    <link href='assets/fonts/family-robo.css' rel='stylesheet' type='text/css'>
+    <link href='assets/fonts/font-italic.css' rel='stylesheet' type='text/css'>
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
+    <!-- Stylesheets -->
+    <link href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css" rel="stylesheet">
+    <link href="assets/css/gozha-nav/gozha-nav.css" rel="stylesheet" />
+    <link href="assets/css/jquery-selectbox/jquery.selectbox.css" rel="stylesheet" />
+    <link href="assets/lib/bower_components/angular-growl-v2/build/angular-growl.min.css" rel="stylesheet" />
+    <link href="assets/css/customs/style.css?v=1" rel="stylesheet" />
+    <link href="assets/css/customs/touch.css?v=1" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="assets/lib/bower_components/select2/select2.css">
+</head>
+<!-- Section body of document -->
+
+<body ng-app="moodies" ng-controller="MainLayoutController as Client">
+    <div class="wrapper">
+        <header class="header-wrapper">
+            <div class="container">
+                <!-- Loading main-logo component-->
+                <main-logo></main-logo>
+                <!-- Loading navbar component -->
+                <navbar></navbar>
+                <!-- Loading managing-user-account component-->
+                <managing-user-account is-logged="Client.isLogged" view-on-change="Client.isLogged = $event.isLogged"></managing-user-account>
+                <user-account-control-panel is-logged="Client.isLogged" is-admin="Client.isAdmin"
+                is-moderator="Client.isModerator"></user-account-control-panel>
+            </div>
+        </header>
+        <!-- Loading searching-bar component -->
+        <searching-bar></searching-bar>
+        <!-- Partial views container -->
+        <div id="partialViews">
+            <ui-view></ui-view>
+        </div>
+        <!-- change-show-creator="Client.showCreator = $event.showCreator" -->
+        <list-creator is-logged='Client.isLogged' list-creator="Client.listCreator" show-creator="Client.showCreator"
+        change-visibility-creator="Client.showCreator = $event.showCreator"
+        content-creator="Client.contentCreator" name-list="Client.nameList" edit-list="Client.editList"
+        show-buttons="Client.showButtons" show-spinner="Client.showSpinner" id-list="Client.idList"></list-creator>
+        <!-- Loading footer-of-layout -->
+        <footer-of-layout></footer-of-layout>
+    </div>
+    <!-- Scripts -->
+    <!-- Loading angular and bower_components -->
+    <script src="assets/lib/bower_components/jquery/dist/jquery-1.10.1.min.js"></script>
+    <script src="assets/lib/bower_components/jquery/dist/jquery.js"></script>
+    <script src="assets/lib/bower_components/jquery-ui/jquery-ui.js"></script>
+    <script type="text/javascript" src="assets/lib/bower_components/jquery/jquery.js"></script>
+    <script type="text/javascript" src="assets/lib/bower_components/select2/select2.js"></script>
+    <script src="assets/lib/bower_components/angular/angular.js"></script>
+    <script type="text/javascript" src="assets/lib/bower_components/angular-ui-select2/src/select2.js"></script>
+    <script src="assets/lib/bower_components/angular-growl-v2/build/angular-growl.min.js"></script>
+    <script src="assets/lib/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="assets/lib/bower_components/angular-resource/angular-resource.js"></script>
+    <script src="assets/lib/bower_components/angular-local-storage/dist/angular-local-storage.min.js"></script>
+    <script src="assets/lib/bower_components/angular-animate/angular-animate.min.js"></script>
+    <script src="assets/lib/bower_components/spin.js/spin.js"></script>
+    <script src="assets/lib/bower_components/angular-spinner/angular-spinner.js"></script>
+
+    <!-- Loading 3rd parties libraries -->
+    <script src="assets/scripts/3rd-parties-libs/jquery-mobile/jquery.mobile.menu.js"></script>
+    <script src="assets/scripts/3rd-parties-libs/jquery-migrate/jquery-migrate-1.2.1.min.js"></script>
+    <script src="assets/scripts/3rd-parties-libs/jquery-selectbox/jquery.selectbox-0.2.min.js"></script>
+    <script src="assets/scripts/3rd-parties-libs/jquery-raty/jquery.raty.js"></script>
+
+    <!-- <script src="assets/scripts/customs/form-element.js"></script>
+    <script src="assets/scripts/customs/form.js"></script> -->
+    <!-- <script src="assets/scripts/3rd-parties-libs/custom-java-script/custom.js"></script>
+    <script src="assets/scripts/3rd-parties-libs/modernizr/modernizr.custom.js"></script> -->
+    <!-- <script src="assets/scripts/customs/init-home.js"></script>
+    <script src="assets/scripts/customs/init-movie-list.js" type="text/javascript"></script>
+    <script src="assets/scripts/customs/init-move-page.js"></script>
+    <script src="assets/scripts/customs/addthis.config.js"></script> -->
+    <script src="assets/scripts/3rd-parties-libs/jquery-magnific-popup/jquery.magnific-popup.min.js"></script>
+    <script src="assets/scripts/3rd-parties-libs/idangerous/idangerous.swiper.min.js"></script>
+    <!-- <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-525fd5e9061e7ef0"></script> -->
+    <!-- Loading boostrap-->
+    <script src="assets/lib/bootstrap/bootstrap.min.js"></script>
+    <!-- Loading main module of app -->
+    <script src="app/app.module.js"></script>
+    <!-- Loading layout of index.html -->
+    <!-- Components of navbar -->
+    <script src="app/layout/header/navbar/navbar.module.js"></script>
+    <script src="app/layout/header/navbar/navbar.component.js"></script>
+    <!-- Component of main-logo -->
+    <script src="app/layout/header/main-logo/main-logo.module.js"></script>
+    <script src="app/layout/header/main-logo/main-logo.component.js"></script>
+    <!-- Component of managing-user-account -->
+    <script src="app/layout/header/managing-user-account/managing-user-account.module.js"></script>
+    <script src="app/layout/header/managing-user-account/managing-user-account.component.js"></script>
+    <!-- Component of searching-bar -->
+    <script src="app/layout/header/searching-bar/searching-bar.module.js"></script>
+    <script src="app/layout/header/searching-bar/searching-bar.component.js"></script>
+    <!-- Component of footer-of-layout -->
+    <script src="app/layout/footer/footer-of-layout.module.js"></script>
+    <script src="app/layout/footer/footer-of-layout.component.js"></script>
+    <!-- Component of list-creator -->
+    <script src="app/layout/list-creator/list-creator.module.js"></script>
+    <script src="app/layout/list-creator/list-creator.component.js"></script>
+    <!--Loading PARTIALS -->
+    <!-- Component of main-page -->
+    <script src="app/partials/main-page/main-page.module.js"></script>
+    <script src="app/partials/main-page/main-page.component.js"></script>
+    <!-- Component of edit-account -->
+    <script src="app/partials/edit-user-account/edit-user-account.module.js"></script>
+    <script src="app/partials/edit-user-account/edit-user-account.component.js"></script>
+    <!-- Component of user-register -->
+    <script src="app/partials/user-register/user-register.module.js"></script>
+    <script src="app/partials/user-register/user-register.component.js"></script>
+    <!-- Component of user-login -->
+    <script src="app/partials/user-login/user-login.module.js"></script>
+    <script src="app/partials/user-login/user-login.component.js"></script>
+    <!-- Component of show-details-film-->
+    <script src="app/partials/show-details-film/show-details-film.module.js"></script>
+    <script src="app/partials/show-details-film/show-details-film.component.js"></script>
+    <!-- Component of list-ranking -->
+    <script src="app/partials/list-ranking/list-ranking.module.js"></script>
+    <script src="app/partials/list-ranking/list-ranking.component.js"></script>
+    <!-- Component of user-account-control-panel -->
+    <script src="app/layout/header/user-account-control-panel/user-account-control-panel.module.js"></script>
+    <script src="app/layout/header/user-account-control-panel/user-account-control-panel.component.js"></script>
+    <!-- Component of favorite-user-list -->
+    <script src="app/partials/favorite-user-list/favorite-user-list.module.js"></script>
+    <script src="app/partials/favorite-user-list/favorite-user-list.component.js"></script>
+    <!-- Component of own-user-list -->
+    <script src="app/partials/own-user-list/own-user-list.module.js"></script>
+    <script src='app/partials/own-user-list/own-user-list.component.js'></script>
+    <!-- Component of retrive-user-account -->
+    <script src="app/partials/retrive-user-account/retrive-user-account.module.js"></script>
+    <script src="app/partials/retrive-user-account/retrive-user-account.component.js"></script>
+    <!-- Component of admin-panel -->
+    <script src="app/partials/admin-panel/admin-panel.module.js"></script>
+    <script src="app/partials/admin-panel/admin-panel.component.js"></script>
+    <!-- Component of moderator-panel -->
+    <script src="app/partials/moderator-panel/moderator-panel.module.js"></script>
+    <script src="app/partials/moderator-panel/moderator-panel.component.js"></script>
+    <!-- Component of result-search-bar -->
+    <script src="app/layout/result-search-bar/result-search-bar.module.js"></script>
+    <script src="app/layout/result-search-bar/result-search-bar.component.js"></script>
+    <!--Loading Services of app -->
+    <!-- Loading service of FilmsService -->
+    <script src="app/services/films.service.js"></script>
+    <!-- Loading service of UsersService -->
+    <script src="app/services/users.service.js"></script>
+    <!-- Loading service of ListsService -->
+    <script src="app/services/lists.service.js"></script>
+    <!-- Loading service of UserAuthorization -->
+    <script src="app/services/OAuth2.service.js"></script>
+    <!-- Loading service of interceptor of UserAuthorization -->
+    <script src="app/services/interceptor.service.js"></script>
+    <script src="app/services/StoreLoggedState.service.js"></script>
+</body>
+
+</html>

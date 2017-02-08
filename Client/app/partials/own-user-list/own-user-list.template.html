@@ -1,0 +1,58 @@
+<section class="container">
+      <div class="col-sm-12">
+        <h2 class="page-heading">Twoje listy</h2>
+        <div class="panel-group accordion-light in" id="accordion" style="height: auto;">
+                                  <!-- Accordion item -->
+                                  <div ng-repeat="list in OwnUserList.ownUserLists" id="list{{list.id}}" class="panel panel-default">
+                                    <div class="panel-heading">
+                                      <h4 class="panel-title">
+                                        <a target="_self" data-toggle="collapse" ng-click="OwnUserList.ShowList(list)" data-parent="#accordion"
+                                        href="#ownList{{list.id}}" class="collapsed">{{list.name}}
+                                          <span class="marker">
+                                            <span class="custom1">+</span>
+                                            <span class="custom2">-</span>
+                                          </span>
+                                          <div class="buttons">
+                                            <a class="btn btn-md btn--success" ng-click="OwnUserList.EditList(list.name, list.id)">Edytuj</a>
+                                            <a class="btn btn-md btn--danger" ng-click="OwnUserList.DeleteList(list.id)">Usuń listę</a>
+                                          </div>
+                                        </a>
+                                      </h4>
+                                    </div>
+                                    <div id="ownList{{list.id}}" class="panel-collapse collapse" style="height: 0px;">
+                                      <div class="panel-body own-list" style="position: relative;">
+                                        <div id="spinner{{list.id}}" class="spinner hidden">
+                                        <span us-spinner spinner-key="spinner-fav" spinner-start-active="true"></span>
+                                        </div>
+                                        <div class="movie movie--preview movie--full release" ng-repeat="film in OwnUserList.List.films">
+                                            <div class="col-sm-3 col-md-2 col-lg-2">
+                                                <div class="movie__images">
+                                                    <img alt='' src="{{film.cover}}">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-9 col-md-10 col-lg-10 movie__about">
+                                                <a ui-sref="showDetailsFilm({filmId: film.id})" id="filmName_{{film.id}}" class="movie__title link--huge">{{film.name}}</a>
+                                                <p class="movie__option"><strong>Kategoria: </strong><a href="#">{{film.genre}}</a></p>
+                                                <p class="movie__option"><strong>Wydany: </strong>{{film.releaseDate}}</p>
+                                                <div class="preview-footer">
+                                                    <div class="movie__rate">
+                                                        <a ng-click="OwnUserList.Vote(film, list)"><span id="ratingL{{list.id}}F{{film.id}}" class="movie__rating" ng-class="{true: 'isVoted', false: 'noVoted'}[{{film.isVoted}}]"><i class="fa fa-thumbs-o-up"></i>{{film.votes}}</span></a>
+                                                        <a style="visibility: hidden">Opis</a>
+                                                    </div>
+                                                    <div id="desc{{film.id}}" class="collapse in">
+                                                        <div class="movie__description">
+                                                            {{film.description}}... </br></br><a class="read-more" ui-sref="showDetailsFilm({filmId: film.id})">Szczegóły filmu</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- end accordion item -->
+                                </div>
+      </div>
+</section>
+<div class="clearfix"></div>

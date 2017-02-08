@@ -1,0 +1,173 @@
+<div growl></div>
+<div id="resultsOfSearchingBox">
+    <div id="resultOfLists">
+        <section class="container" id="showLists">
+            <h1 class="unslyled">Wynik list:</h1>
+            <div id="noLists" class="content-wrapper specific--wrapper hidden">
+                <div class="container">
+                    <div class="heading--outcontainer">
+                        <h1 style="text-align: center;" class="unslyled">Brak wyników</h1>
+                    </div>
+                </div>
+            </div>
+            <div id="spinner1" class="spinner">
+                <span us-spinner spinner-key="spinner-1" spinner-start-active="true"></span>
+            </div>
+            <div id="repeatAlllist" ng-repeat="list in ResultSearchBar.lists track by $index" ng-init = "listIndex = $index">
+                <h2 class="page-heading">{{list.name}}</h2>
+                <a ng-click="ResultSearchBar.AddToFavourites(list)" class="watchlist">Dodaj do ulubionych</a> &nbsp;
+                <button id="likesL{{list.id}}" class="social-like" ng-class="{'isVoted': list.voted == 1}" ng-click="ResultSearchBar.VoteListLike(list)">
+                <span class="like"><i class="fa fa-thumbs-o-up"></i></span>
+                <span class="count">{{list.likes}}</span>
+              </button> &nbsp; &nbsp;
+                <button id="dislikesL{{list.id}}" class="social-dislike" ng-class="{'isVoted': list.voted == -1}" ng-click="ResultSearchBar.VoteListDislike(list)">
+                <span class="dislike">{{list.disLikes}}</span>
+                <span class="like"><i class="fa fa-thumbs-o-down"></i></span>
+              </button>
+<<<<<<< HEAD
+                <div class="movie movie--preview movie--full release" ng-repeat="film in list.films | limitTo: 1" >
+                    <div class="col-sm-3 col-md-2 col-lg-2" ng-init = "index = 0; last = ResultSearchBar.lastFilm(list.id, index)">
+                        
+                        <div class="movie__images">
+                            <img alt='' src="{{film.cover}}">
+                        </div>
+                    </div>
+                    <div class="col-sm-9 col-md-10 col-lg-10 movie__about">
+                        <a ui-sref="showDetailsFilm({filmId: film.id})" id="filmName_{{film.id}}" class="movie__title link--huge">{{film.name}}</a>
+                        <p class="movie__option"><strong>Kategoria: </strong><a href="#">{{film.genre}}</a></p>
+                        <p class="movie__option"><strong>Wydany: </strong>{{film.releaseDate}}</p>
+                        <div class="movie__btns">
+                            <a class="btn btn-md btn--warning" ng-click="ResultSearchBar.ShowCreator(film)">Dodaj do swojej listy</a>
+                        </div>
+                        <div class="preview-footer">
+                            <div class="movie__rate">
+                                <div class="score"><span class="movie__rate-number">Film pasuje do listy?</span></div>
+                                
+                                <a ng-init="voted =  ResultSearchBar.lists[listIndex].films[index].isVoted; votes = ResultSearchBar.lists[listIndex].films[index].votes" 
+                                ng-click="film = ResultSearchBar.Vote(film, list);
+                                votes = ResultSearchBar.lists[listIndex].films[index].votes; 
+                                voted =  ResultSearchBar.lists[listIndex].films[index].isVoted"
+                                ><span id="ratingL{{list.id}}F{{film.id}}" class="movie__rating" ng-class="{true: 'isVoted', false: 'noVoted'}[voted]"><i class="fa fa-thumbs-o-up"></i>{{film.votes}}</span></a>
+                                <a data-toggle="collapse" data-target="#desc{{film.id}}" class="movie__show-btn">Opis</a>
+                            </div>
+                            <div id="desc{{film.id}}" class="collapse">
+                                <div class="movie__description">
+                                    {{film.description}}... <a ui-sref="showDetailsFilm({filmId: film.id})">Czytaj dalej</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    
+                    <div class="pagination paginatioon--full">
+                        <button class="pagination__prev" 
+                        ng-click="index = index - 1; 
+                        film = ResultSearchBar.foo(list.id, index);
+                        voted =  ResultSearchBar.lists[listIndex].films[index].isVoted;
+                        votes = ResultSearchBar.lists[listIndex].films[index].votes" 
+                        ng-hide ="index == 0">Poprzednie</button>
+                        <button class="pagination__next" 
+                        ng-click="index = index + 1; 
+                        film = ResultSearchBar.foo(list.id, index);
+                        last = ResultSearchBar.lastFilm(list.id, index); 
+                        voted =  ResultSearchBar.lists[listIndex].films[index].isVoted;
+                        votes = ResultSearchBar.lists[listIndex].films[index].votes" 
+                        ng-hide="index == last" > Następne</button>
+                                        
+                </div>
+                </div>
+            </div>
+            <hr>
+        </section>
+    </div>
+
+              <div class="movie movie--preview movie--full release" ng-repeat="film in list.films">
+                  <div class="col-sm-3 col-md-2 col-lg-2">
+                      <div class="movie__images">
+                          <img alt='' src="{{film.cover}}">
+                      </div>
+                  </div>
+                  <div class="col-sm-9 col-md-10 col-lg-10 movie__about">
+                      <a ui-sref="showDetailsFilm({filmId: film.id})" id="filmName_{{film.id}}" class="movie__title link--huge">{{film.name}}</a>
+                      <p class="movie__option"><strong>Kategoria: </strong><a href="#">{{film.genre}}</a></p>
+                      <p class="movie__option"><strong>Wydany: </strong>{{film.releaseDate}}</p>
+                      <div class="movie__btns">
+                          <a class="btn btn-md btn--warning" ng-click="ResultSearchBar.ShowCreator(film)">Dodaj do swojej listy</a>
+                      </div>
+                      <div class="preview-footer">
+                          <div class="movie__rate">
+                              <div class="score"><span class="movie__rate-number">Film pasuje do listy?</span></div>
+                              <a ng-click="ResultSearchBar.Vote(film, list)"><span id="ratingL{{list.id}}F{{film.id}}" class="movie__rating" ng-class="{true: 'isVoted', false: 'noVoted'}[{{film.isVoted}}]"><i class="fa fa-thumbs-o-up"></i>{{film.votes}}</span></a>
+                              <a data-toggle="collapse" data-target="#desc{{film.id}}" class="movie__show-btn">Opis</a>
+                          </div>
+                          <div id="desc{{film.id}}" class="collapse">
+                              <div class="movie__description">
+                                  {{film.description}}... <a ui-sref="showDetailsFilm({filmId: film.id})">Czytaj dalej</a>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="clearfix"></div>
+
+              </div>
+              <div class="pagination paginatioon--full">
+                          <a href="#" class="pagination__prev">prev</a>
+                          <a href="#" class="pagination__next">next</a>
+                  </div>
+          </div>
+          <hr>
+      </section>
+  </div>
+    <div id="resulfOfFilms">
+        <section class="container" id="showFilms">
+            <h1 class="unslyled" style="margin-top:100px;">Wynik filmów:</h1>
+            <div id="noFilms" class="content-wrapper specific--wrapper hidden">
+                <div class="container">
+                    <div class="heading--outcontainer">
+                        <h1 style="text-align: center;" class="unslyled">Brak wyników</h1>
+                    </div>
+                </div>
+            </div>
+            <div id="spinner2" class="spinner">
+                <span us-spinner spinner-key="spinner-1" spinner-start-active="true"></span>
+            </div>
+            <div class="movie movie--preview movie--full release" ng-repeat="film in ResultSearchBar.films">
+                <div class="col-sm-3 col-md-2 col-lg-2">
+                    <div class="movie__images">
+                        <img alt='' src="{{film.cover}}">
+                    </div>
+                </div>
+                <div class="col-sm-9 col-md-10 col-lg-10 movie__about">
+                    <a ui-sref="showDetailsFilm({filmId: film.id})" id="filmName_{{film.id}}" class="movie__title link--huge">{{film.name}}</a>
+                    <p class="movie__option"><strong>Kategoria: </strong><a href="#">{{film.genre}}</a></p>
+                    <p class="movie__option"><strong>Wydany: </strong>{{film.releaseDate}}</p>
+                    <div class="movie__btns">
+                        <a class="btn btn-md btn--warning" ng-click="ResultSearchBar.ShowCreator(film)">Dodaj do swojej listy</a>
+                    </div>
+                    <div class="preview-footer">
+                        <hr style="margin: 0px;"></hr>
+                        <div id="desc{{film.id}}" class="collapse in">
+                            <div class="movie__description">
+                                {{film.description}}... <a ui-sref="showDetailsFilm({filmId: film.id})">Czytaj dalej</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr></hr>
+                
+            </div>
+        </section>
+        
+    </div>
+</div>
+<div id="loginModal" class="overlay overlay-hugeinc" ng-class="{'close': ResultSearchBar.isLogged == true,
+'open': ResultSearchBar.isLogged == false && ResultSearchBar.openModal == true}">
+    <section class="container">
+        <div>
+            <button ng-click="ResultSearchBar.CloseModal()" type="button" class="overlay-close">Close</button>
+            <user-login is-logged="ResultSearchBar.isLogged" on-view-change="ResultSearchBar.isLogged = $event.isLogged"></user-login>
+        </div>
+    </section>
+</div>

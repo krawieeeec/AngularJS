@@ -1,0 +1,119 @@
+<html>
+	<body>
+	<h1>Table of Contents</h1>
+		<h2><a href="#film">Films</a></h2>
+		<h2><a href="#list">Lists</a></h2>
+		<h2><a href="#user">Users</a></h2>
+		
+<style>
+.corner {
+    border-radius: 25px;
+    border: 2px solid #73AD21;
+    padding: 20px; 
+}
+ </style>
+		
+		<div id="film" class="corner">
+		<h1>Films</h1>
+			<h2>Show all films</h2>
+			<div>
+				<code>HTTP GET /api/film</code>
+			</div>
+			<h2>Display specific film details</h2>
+			<div>
+				<code>HTTP GET /api/film/{id}</code>
+			</div>
+			<h2>Edit film</h2>
+			<div>
+				<code>HTTP PUT /api/film/{id}</code><br>
+				<h3>Params</h3>
+				<ul>filmId : name for new list</ul>
+				<ul>name : List of ids connected to list</ul>
+				<ul>originalName : original name of film</ul>
+				<ul>releaseDate : Release date</ul>
+				<ul>genre : Genre of film</ul>
+				<ul>description : Description of film</ul>
+				<ul>cover : link to cover</ul>
+				<code>
+{
+    "filmId": 1,
+    "name": "EDITED-Skazani na Shawshank",
+    "originalName": "The Shawshank Redemption",
+    "releaseDate": "16 kwietnia 1995 (Polska) 10 września 1994 (świat)",
+    "genre": "Dramat",
+    "description": "Adaptacja opowiadania Stephena Kinga. Historia niesłusznie skazanego na dożywocie bankiera, który musi przeżyć w brutalnym świecie rządzonym przez strażników i współwięźniów.",
+    "cover": "http://1.fwcdn.pl/po/10/48/1048/6925401.6.jpg"
+  }
+</code><br><br>
+Or shorter version (you can specify which properties will be updated)<br>
+<code>
+	{
+    "name": "AAAA-Skazani na Shawshank"
+  }
+</code>
+		</div>
+			
+		</div><br>
+		
+		
+		
+		<div id="list" class="corner">
+		<h1>Lists</h1>
+			<h2>Show all lists</h2>
+			<div>
+				<code>HTTP GET /api/list</code>
+			</div>
+			<h2>Display specific list details</h2>
+			<div>
+				<code>HTTP GET /api/list/{id}</code>
+			</div>
+			<h2>Add new list</h2>
+			<div>
+				<code>HTTP POST /api/list</code><br>
+				<h3>Params</h3>
+				<ul>ListName : Name for new list</ul>
+				<ul>FilmIds : List of ids connected to list</ul>
+				<code>{
+    "ListName": "test list",
+    "FilmIds": [47, 12]
+}</code>
+			</div>
+			<h2>Delete list</h2>
+			<div>
+				<code>HTTP DELETE /api/list/{id}</code><br>
+			</div>
+			
+		</div><br>
+		
+		
+		
+		<div id="user" class="corner">
+		<h1>Users</h1>
+			<h2>Register new user</h2>
+			<div>
+				<code>HTTP POST /api/account/register</code><br>
+				<ul>UserName</ul>
+				<ul>Password : Password for new user, at least 6 characters long</ul>
+				<ul>ConfirmPassword</ul>
+				<code>
+{
+    "UserName" : "test1",
+    "Password" : "123456",
+    "ConfirmPassword" : "123456"
+}
+</code>
+			</div>
+			<h2>Get access token</h2>
+			<div>
+				<code>HTTP POST /token</code><br>
+				<a href="http://moodies-001-site1.anytempurl.com/dokumentacja/token.png">Example post for get user token</a>
+			</div>
+			
+			<h2>Get access token</h2>
+			<div>
+				<code>HTTP for any protected resource</code><br>
+				<a href="http://moodies-001-site1.anytempurl.com/dokumentacja/login.png">Example post for access protected resources</a>
+			</div>
+		</div><br>
+	</body>
+</html>

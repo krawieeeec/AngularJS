@@ -1,0 +1,133 @@
+<div class="main">
+	<h1>Rejestracja</h1>
+
+		<form name="registrationUser">
+      <div>
+      <div id="registerAlerts">
+          <div class="alert alert-success" ng-show="UserRegister.showSuccess">
+              Utworzono konto pomyślnie!</br>
+              Link do aktywacji wysłano na: {{UserRegister.newUser.Email}}</br>
+          </div>
+          <div class="alert alert-danger" ng-show="UserRegister.userNameExists">
+              Podana nazwa uzytkownika już jest zajęta.
+          </div>
+          <div class="alert alert-danger" ng-show="UserRegister.differentPasswords">
+              Podane hasła są różne.
+          </div>
+          <div class="alert alert-danger" ng-show="UserRegister.emailExists">
+              Podany e-mail już istnieję w bazie.
+          </div>
+          <div class="alert alert-danger" ng-show="UserRegister.unableRegister">
+              Nieznana przyczyna błędu. Skontaktuj się z administratorem portalu.
+          </div>
+      </div>
+    </div>
+		<div id="form">
+		   <div class="lable-2">
+            <input autocomplete="off" class="text" name="UserName" placeholder="Nazwa uzytkownika" type="text" ng-model="UserRegister.newUser.UserName" required>
+		        <input autocomplete="off" class="text" name="UserEmail" placeholder="Podaj mail" type="email" ng-model="UserRegister.newUser.Email" required>
+		        <input autocomplete="off" class="text" name="UserPassword" placeholder="Podaj hasło" type="password" ng-model="UserRegister.newUser.Password" ng-minlength="6" required>
+            <span ng-show="!registrationUser.UserPassword.$error.required && registrationUser.UserPassword.$touched
+            && registrationUser.UserPassword.$error.minlength" style="color:red">Musisz podać przynajmniej 6 znaków.</span>
+            <input autocomplete="off" class="text" name="UserConfirmPassword" placeholder="Potwierdź hasło" type="password" ng-model="UserRegister.newUser.ConfirmPassword" required>
+
+		   </div>
+		   <h3>Rejestrując się, zgadzasz się na <span class="term"><a href="#">Regulamin</a></span></h3>
+		   <div class="submit">
+			  <input ng-click="UserRegister.UserRegister()" ng-disabled="registrationUser.UserFirstName.$error.required ||
+            registrationUser.UserLastName.$error.required || registrationUser.UserName.$error.required || registrationUser.UserEmail.$error.required
+            || registrationUser.UserPassword.$error.required || registrationUser.UserConfirmPassword.$error.required
+            || (UserRegister.newUser.ConfirmPassword != UserRegister.newUser.Password) || registrationUser.UserEmail.$invalid
+            || registrationUser.UserPassword.$error.minlength || UserRegister.showSuccess || UserRegister.userNameExists
+            || UserRegister.differentPasswords || UserRegister.emailExists || UserRegister.emailExists" value="Zarejestruj" type="submit">
+		   </div>
+			 <div id="favspinner" class="hidden">
+			 <span us-spinner spinner-key="spinner-fav" spinner-start-active="true"></span>
+			 </div>
+		 </div>
+		   <div class="clear"> </div>
+		</form>
+		<!-----//end-main---->
+		</div>
+
+
+
+
+
+
+
+
+
+<!-- <h1>userRegister</h1>
+<div id="userRegister">
+    <form name="registrationUser">
+        Imię:</br>
+        <input type="text" name="UserFirstName" value="FirstName" ng-model="UserRegister.newUser.FirstName" required></br>
+        <span ng-show="registrationUser.UserFirstName.$error.required && registrationUser.UserFirstName.$touched"
+        style="color:red"> Musisz podać swoje imię.</span></br>
+
+        Nazwisko:</br>
+        <input type="text" name="UserLastName" value="LastName" ng-model="UserRegister.newUser.LastName" required></br>
+        <span ng-show="registrationUser.UserLastName.$error.required && registrationUser.UserLastName.$touched"
+        style="color:red"> Musisz podać swoje nazwisko.</span></br>
+        Nick:</br>
+
+        <input type="text" name="UserName" value="UserName" ng-model="UserRegister.newUser.UserName" required></br>
+        <span ng-show="registrationUser.UserName.$error.required && registrationUser.UserName.$touched"
+        style="color:red"> Musisz podać swój nick.</span></br>
+        Email:</br>
+
+        <input type="email" name="UserEmail" value="Email" ng-model="UserRegister.newUser.Email" required></br>
+        <span ng-show="registrationUser.UserEmail.$error.required && registrationUser.UserEmail.$touched"
+        style="color:red"> Musisz podać swój email.</span>
+        <span ng-show="registrationUser.UserEmail.$invalid && registrationUser.UserEmail.$touched && !registrationUser.UserEmail.$error.required"
+        style="color:red">Twój email jest niepoprawny. </span></br>
+
+        Hasło:</br>
+        <input type="password" name="UserPassword" value="Password" ng-model="UserRegister.newUser.Password" ng-minlength="6" required></br>
+        <span ng-show="registrationUser.UserPassword.$error.required && registrationUser.UserPassword.$touched
+        && !registrationUser.UserPassword.$error.minlength" style="color:red">Musisz podać hasło.</span>
+        <span ng-show="!registrationUser.UserPassword.$error.required && registrationUser.UserPassword.$touched
+        && registrationUser.UserPassword.$error.minlength" style="color:red">Musisz podać przynajmniej 6 znaków.</span></br>
+
+        Potwierdź hasło:</br>
+        <input type="password" name="UserConfirmPassword" value="ConfirmPassword" ng-model="UserRegister.newUser.ConfirmPassword" required></br>
+        <span ng-show="registrationUser.UserConfirmPassword.$error.required && registrationUser.UserConfirmPassword.$touched"
+        style="color:red">Musisz potwierdzić hasło.</span>
+        <span ng-show="UserRegister.newUser.ConfirmPassword != UserRegister.newUser.Password && !registrationUser.UserConfirmPassword.$error.required"
+        style="color:red">Hasła się nie zgadzają.</span></br>
+
+        <div id="registerAlerts">
+            <div class="alert alert-success" ng-show="UserRegister.showSuccess">
+                Utworzono konto pomyślnie!</br>
+                Link do aktywacji wysłano na: {{UserRegister.newUser.Email}}</br>
+                Za chwilę nastąpi przekierowanie na stronę główną.
+            </div>
+            <div class="alert alert-danger" ng-show="UserRegister.userNameExists">
+                Podana nazwa uzytkownika już jest zajęta.
+            </div>
+            <div class="alert alert-danger" ng-show="UserRegister.differentPasswords">
+                Podane hasła są różne.
+            </div>
+            <div class="alert alert-danger" ng-show="UserRegister.emailExists">
+                Podany e-mail już istnieję w bazie.
+            </div>
+            <div class="alert alert-danger" ng-show="UserRegister.unableRegister">
+                Nieznana przyczyna błędu. Skontaktuj się z administratorem portalu.
+            </div>
+        </div>
+
+        <div id="ButtonsFormRegisterUser">
+            <a class="btn btn-md btn-primary" ng-click="UserRegister.ClearData()" ng-disabled="registrationUser.UserFirstName.$error.required &&
+                registrationUser.UserLastName.$error.required && registrationUser.UserName.$error.required && registrationUser.UserEmail.$error.required
+                && registrationUser.UserPassword.$error.required && registrationUser.UserConfirmPassword.$error.required">Wyczyść dane</a>
+            <a class="btn btn-md btn--success" ng-click="UserRegister.UserRegister()" ng-disabled="registrationUser.UserFirstName.$error.required ||
+                registrationUser.UserLastName.$error.required || registrationUser.UserName.$error.required || registrationUser.UserEmail.$error.required
+                || registrationUser.UserPassword.$error.required || registrationUser.UserConfirmPassword.$error.required
+                || (UserRegister.newUser.ConfirmPassword != UserRegister.newUser.Password) || registrationUser.UserEmail.$invalid
+                || registrationUser.UserPassword.$error.minlength || UserRegister.showSuccess || UserRegister.userNameExists
+                || UserRegister.differentPasswords || UserRegister.emailExists || UserRegister.emailExists">Stwórz konto</a>
+        </div>
+
+    </form>
+</div> -->

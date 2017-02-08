@@ -1,0 +1,105 @@
+<section class="container">
+  <div class="col-sm-12">
+    <h2 class="page-heading">Panel uzytkownika</h2>
+    <div class="tabs tabs--horisontal">
+      <!-- Nav tabs -->
+      <ul class="nav nav-tabs" id="hTab">
+        <li class="active"><a target="_self" href="#editMail" data-toggle="tab">Zmień mail</a></li>
+        <li class=""><a target="_self" href="#editPassword" data-toggle="tab">Zmień hasło</a></li>
+      </ul>
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div class="tab-pane active" id="editMail">
+          <div style="padding-top: 20px; padding-bottom:20px;" id="alerts">
+            <div class="alert alert-success" ng-show="EditUserAccount.showSuccessChangeEmail">
+              Zmieniono adres email!</br>
+              Twój nowy email to: {{EditUserAccount.editUserAccount.NewEmail}}</br>
+            </div>
+            <div class="alert alert-danger" ng-show="EditUserAccount.emailAlreadyTaken">
+              Podany adres email już jest zajęty. Musisz podać inny.
+            </div>
+            <div class="alert alert-danger" ng-show="EditUserAccount.unableChangeEmail">
+              Nie udało się zmienic adresu email. Skontaktuj się z administratorem portalu.
+            </div>
+            <div class="alert alert-danger" ng-show="EditUserAccount.unauthorization">
+              Musisz być zalogowany!
+            </div>
+          </div>
+          <form id="changingUserEmail" name="changingUserEmail">
+            <input id="mailInput" autocomplete="off" placeholder="Nowy mail" type="email" name="UserEmail" ng-model="EditUserAccount.editUserAccount.NewEmail" required></br>
+            <span ng-show="changingUserEmail.UserEmail.$error.required && changingUserEmail.UserEmail.$touched" style="color:red"> Musisz podać swój email.</span>
+            <span ng-show="changingUserEmail.UserEmail.$invalid && changingUserEmail.UserEmail.$touched &&
+                               !changingUserEmail.UserEmail.$error.required" style="color:red">Twój email jest niepoprawny. </span></br>
+            <div id="buttonChangeUserEmail" style="padding-top: 20px;">
+              <a class="btn btn-md btn-primary" ng-click="EditUserAccount.ClearData()">Cofnij</a>
+              <a target="_self" class="btn btn-md btn--success" ng-click="EditUserAccount.ChangeUserEmail()" ng-disabled="changingUserEmail.UserEmail.$error.required
+                                      ||  changingUserEmail.UserEmail.$invalid || EditUserAccount.emailAlreadyTaken || EditUserAccount.unableChangeEmail
+                                      ||  EditUserAccount.unauthorization || EditUserAccount.showSuccess">Zmień e-mail!</a>
+            </div>
+          </form>
+
+        </div>
+        <div class="tab-pane" id="editPassword">
+          <div style="padding-top: 20px; padding-bottom:20px;" id="alerts">
+            <div class="alert alert-success" ng-show="EditUserAccount.showSuccessChangePassword">
+              Zmieniono hasło!</br>
+            </div>
+            <div class="alert alert-danger" ng-show="EditUserAccount.diffrentPasswords">
+              Nowe hasło nie zgadza się z jego potwierdzeniem.
+            </div>
+            <div class="alert alert-danger" ng-show="EditUserAccount.shortPassword">
+              Musisz podać przynajmniej 6 znaków.
+            </div>
+            <div class="alert alert-danger" ng-show="EditUserAccount.wrongPassword">
+              Podane hasło jest błędne.
+            </div>
+            <div class="alert alert-danger" ng-show="EditUserAccount.unableChangePassword">
+              Nie udało się zmienić hasła. Skontaktuj się z administratorem portalu.
+            </div>
+          </div>
+          <form id="changingUserPassword" name="changingUserPassword">
+
+            <input autocomplete="off" placeholder="Aktualne hasło" type="password" name="OldPassword" ng-model="EditUserAccount.editUserAccount.CurrentPassword"
+            ng-minlength="6" required></br>
+            <span ng-show="changingUserPassword.OldPassword.$error.required &&
+            changingUserPassword.OldPassword.$touched" style="color:red"> Wpisz stare hasło.</span>
+            <span ng-show="changingUserPassword.OldPassword.$invalid && changingUserPassword.OldPassword.$touched &&
+            !changingUserPassword.OldPassword.$error.required && changingUserPassword.OldPassword.$error.minlength"
+            style="color:red">Hasło musi składać się z 6 znaków</span></br>
+
+            <input autocomplete="off" placeholder="Nowe hasło" type="password" name="NewPassword" ng-model="EditUserAccount.editUserAccount.NewPassword"
+            ng-minlength="6" required></br>
+            <span ng-show="changingUserPassword.NewPassword.$error.required &&
+            changingUserPassword.NewPassword.$touched" style="color:red"> Wpisz nowe hasło.</span>
+            <span ng-show="changingUserPassword.NewPassword.$invalid && changingUserPassword.NewPassword.$touched &&
+            !changingUserPassword.NewPassword.$error.required && changingUserPassword.NewPassword.$error.minlength"
+            style="color:red">Nowe hasło musi składać się z 6 znaków</span></br>
+
+            <input autocomplete="off" placeholder="Potwierdz nowe hasło" type="password" name="ConfirmNewPassword"
+            ng-model="EditUserAccount.editUserAccount.ConfirmNewPassword" required></br>
+            <span ng-show="changingUserPassword.ConfirmNewPassword.$error.required && changingUserPassword.ConfirmNewPassword.$touched"
+              style="color:red"> Musisz potwierdzić nowe hasło.</span>
+            <span ng-show="changingUserPassword.ConfirmNewPassword.$invalid && changingUserPassword.ConfirmNewPassword.$touched &&
+            !changingUserPassword.ConfirmNewPassword.$error.required && changingUserPassword.ConfirmNewPassword.$error.minlength"
+            style="color:red">Nowe hasło musi składać się z 6 znaków</span></br>
+
+
+            <div style="padding-top: 20px;" id="buttonChangeUserEmail">
+              <a class="btn btn-md btn-primary" ng-click="EditUserAccount.ClearData()">Cofnij</a>
+              <a target="_self" class="btn btn-md btn--success" ng-click="EditUserAccount.ChangePassword()" ng-disabled="
+                                      changingUserPassword.OldPassword.$error.required || changingUserPassword.OldPassword.$invalid ||
+                                      changingUserPassword.NewPassword.$error.required || changingUserPassword.NewPassword.$invalid ||
+                                      changingUserPassword.ConfirmNewPassword.$error.required || changingUserPassword.ConfirmNewPassword.$invalid ||
+                                      changingUserPassword.UserEmail.$error.required ||  changingUserPassword.UserEmail.$invalid ||
+                                      EditUserAccount.diffrentPasswords || EditUserAccount.shortPassword ||
+                                      EditUserAccount.wrongPassword || EditUserAccount.showSuccessChangeEmail ||
+                                      EditUserAccount.unableChangePassword">Zmień hasło!</a>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="clearfix"></div>

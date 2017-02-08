@@ -1,0 +1,59 @@
+<div id="listCreatorBox" class="creator-wrapper animated bounce infinite" ng-style="closeCreator" ng-if="Creator.showCreator != 'none'" >
+    <div class="creator-title" ng-click="Creator.MinimalizeCreator(Creator.contentCreator)">
+        Kreator tworzenia zbioru
+        <a ng-click="Creator.ChangeVisibilty()" class="close"></a>
+    </div>
+    <div class="creator-content" ng-show="!Creator.contentCreator">
+        <form name="changeNameList" ng-show="Creator.isLogged">
+            <div class="field-wrap">
+                <input type="text" placeholder="Nazwa nowego zbioru" ng-model="Creator.nameList" name="nameList" ng-minlength="4" ng-maxlength="24"
+                    required></br>
+                <!-- <span ng-show="changeNameList.nameList.$error.required && !Creator.showError" style="color:red"><The></The> Wymagana jest nazwa listy.</span> -->
+                <span ng-show="!changeNameList.nameList.$error.required && changeNameList.nameList.$error.minlength && !Creator.showError"
+                    style="color:red"><The></The> Minimalna długość to cztery znaki.</span>
+                <span ng-show="!changeNameList.nameList.$error.required && !changeNameList.nameList.$error.minlength
+                && changeNameList.nameList.$error.maxlength && !Creator.showError" style="color:red"><The></The> Maksymalna długość to 24 znaki.</span>
+                </br>
+            </div>
+            <div class="alert-box" ng-show="Creator.showSuccess">
+                <div class="alert alert-success">
+                    <span class="icon-flag"></span> Operacja przebiegła pomyślnie.
+                    <a class="close" data-dismiss="alert" href="#" aria-hidden="true"></a>
+                </div>
+            </div>
+            <div class="alert-box" ng-show="Creator.showError">
+                <div class="alert alert-danger">
+                    <span class="icon-warning"></span> Nie udało się wysłac listy.
+                    <a class="close" data-dismiss="alert" href="#" aria-hidden="true"></a>
+                </div>
+            </div>
+            <div class="creator-list" ng-show="!Creator.showError && !Creator.showSuccess">
+                <ol class="list">
+                    <li ng-repeat="film in Creator.listCreator track by $index">
+                        {{film.name}}
+                        <a class="delete" ng-click=Creator.RemoveFilm($index)></a>
+                    </li>
+                    <span ng-show="Creator.listCreator.length == 0 && Creator.showSpinner==false" style="color:red; font-size: 15px">Musisz dodać przynajmniej jeden film.</span>
+                </ol>
+            </div>
+            <div id="spinner" class="spinner" ng-show="Creator.showSpinner">
+                <span us-spinner spinner-key="spinner-1" spinner-start-active="true"></span>
+            </div>
+            <div class="creator-save" ng-show="Creator.showButtons">
+                <a class="btn btn-md btn--danger" ng-click="Creator.ClearCreatorData()" ng-disabled="changeNameList.nameList.$error.required ||
+                 (Creator.listCreator.length == 0) || Creator.disableButton">Wyczyść wszystko</a>
+                <a class="btn btn-md btn--success" ng-show="!Creator.editList" ng-click="Creator.CreateNewList()" ng-disabled="changeNameList.nameList.$error.required ||
+                 changeNameList.nameList.$error.minlength || changeNameList.nameList.$error.maxlength || !Creator.isLogged || (Creator.listCreator.length == 0)
+                 || Creator.disableButton">Zapisz swoją listę!</a>
+                 <a class="btn btn-md btn--success" ng-show="Creator.editList" ng-click="Creator.EditList()" ng-disabled="changeNameList.nameList.$error.required ||
+                 changeNameList.nameList.$error.minlength || changeNameList.nameList.$error.maxlength || !Creator.isLogged || (Creator.listCreator.length == 0)
+                 || Creator.disableButton">Edytuj Liste!</a>
+            </div>
+    </div>
+    </form>
+    <div class="alert-box" ng-show="!Creator.isLogged">
+        <div class="alert alert-danger">
+            <span class="icon-warning"></span> Musisz zalogować się, aby skorzystać z kreatora.
+        </div>
+    </div>
+</div>

@@ -1,0 +1,6 @@
+<div class="control-panel" >
+    <a ui-sref="userLogin" class="btn btn-md btn--warning btn--book" ng-show="!UserAccount.isLogged" >Logowanie</a>
+    <a ui-sref="userRegister" class="btn btn-md btn--warning btn--book" ng-show="!UserAccount.isLogged" >Rejestracja</a>
+
+    <a ui-sref="main" class="btn btn-md btn--warning btn--book" ng-show="UserAccount.isLogged" ng-click="UserAccount.Logout()">Wyloguj</a>
+</div>

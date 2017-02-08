@@ -1,0 +1,57 @@
+<div growl></div>
+
+<section class="container">
+  <div class="col-sm-12">
+    <h2 class="page-heading">Panel Moderatora</h2>
+    <div class="tabs tabs--horisontal">
+      <!-- Nav tabs -->
+      <ul class="nav nav-tabs" id="hTab">
+        <!-- <li class="active"><a target="_self" href="#editFilm" data-toggle="tab">Edytuj film</a></li>
+        <li class=""><a target="_self" href="#addFilm" data-toggle="tab">Dodaj film</a></li> -->
+        <li class="active"><a target="_self" href="#deleteList" data-toggle="tab">Usuń listę</a></li>
+        <li class=""><a target="_self" href="#editListName" data-toggle="tab">Edytuj nazwę listy</a></li>
+      </ul>
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <!-- <div class="tab-pane active" id="editFilm">
+        </div>
+        <div class="tab-pane" id="addFilm">
+        </div> -->
+        <div class="tab-pane active" id="deleteList">
+          <div style="text-align: center; position: relative;">
+            <div id="spinner1" class="hidden">
+            <span us-spinner spinner-key="spinner-fav1" spinner-start-active="true"></span>
+            </div>
+          <select ui-select2 ng-model="Moderator.listToDelete" data-placeholder="Wybierz listę..." style="width:300px;">
+              <option value=""></option>
+              <option ng-repeat="list in Moderator.AllLists" value="{{list.id}}">{{list.name}}</option>
+          </select>
+          <a href="" ng-disabled="Moderator.listToDelete == undefined" ng-click="Moderator.DeleteList(Moderator.listToDelete)" class="btn btn-md btn--danger">Usuń listę</a>
+        </div>
+        </div>
+        <div class="tab-pane" id="editListName">
+          <div style="text-align: center; position: relative;">
+            <div id="spinner2" class="hidden">
+            <span us-spinner spinner-key="spinner-fav2" spinner-start-active="true"></span>
+            </div>
+          <select ui-select2 ng-model="Moderator.listToChange" data-placeholder="Wybierz listę..." style="width:300px;">
+              <option value=""></option>
+              <option ng-repeat="list in Moderator.AllLists" value="{{list.id}}">{{list.name}}</option>
+          </select>
+          <form name="form">
+          <input type="text" placeholder="Nowa nazwa listy" ng-model="name" name="newName" ng-minlength="4"
+              ng-maxlength="24" required></br>
+            </form>
+          <!-- <span ng-show="changeNameList.listOfName.$error.required && !Creator.showError" style="color:red"><The></The> Wymagana jest nazwa listy.</span> -->
+          <span ng-show="form.newName.$error.minlength" style="color:red"><The></The> Minimalna długość to cztery znaki.</span>
+          <span ng-show="form.newName.$error.maxlength" style="color:red"><The></The> Maksymalna długość to 24 znaki.</span>
+          </br>
+          <a href="" ng-disabled="Moderator.listToChange == undefined || form.newName.$error.required ||
+           form.newName.$error.minlength || form.newName.$error.maxlength" ng-click="Moderator.ChangeNameList(Moderator.listToChange, form.newName)" class="btn btn-md btn--danger">Zmień nazwę listy</a>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="clearfix"></div>

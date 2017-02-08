@@ -1,0 +1,36 @@
+<section class="container">
+      <div class="col-sm-12">
+      <h2 class="page-heading">Odzyskaj konto</h2>
+        <div id="retriveUserAccount">
+            <form name="retrivingUserAccount">
+                <input autocomplete="off" type="email" name="UserEmail" placeholder="Podaj swoj mail" ng-model="RetriveUserAccount.retriveUserAccount.Email" required></br>
+                <span ng-show="retrivingUserAccount.UserEmail.$error.required && retrivingUserAccount.UserEmail.$touched" style="color:red"> Musisz podać swój email.</span>
+                <span ng-show="retrivingUserAccount.UserEmail.$invalid && retrivingUserAccount.UserEmail.$touched && !retrivingUserAccount.UserEmail.$error.required"
+                    style="color:red">Twój email jest niepoprawny. </span></br>
+                <div id="registerAlerts">
+                    <div class="alert alert-success" ng-show="RetriveUserAccount.showSuccess">
+                        Zweryfikowano konto!</br>
+                        Aby zresetować konto wejdź na wskazany email: {{RetriveUserAccount.retriveUserAccount.Email}}</br>
+                        Za chwilę nastąpi przekierowanie na stronę główną.
+                    </div>
+                    <div class="alert alert-danger" ng-show="RetriveUserAccount.userAccountNotConfirmed">
+                        Twoje konto nie zostało aktywowane.
+                    </div>
+                    <div class="alert alert-danger" ng-show="RetriveUserAccount.emailNotExists">
+                        Podany adres email: "{{RetriveUserAccount.retriveUserAccount.Email}}" nie istnieje w bazie.
+                    </div>
+                    <div class="alert alert-danger" ng-show="RetriveUserAccount.unableRegister">
+                        Nieznana przyczyna błędu. Skontaktuj się z administratorem portalu.
+                    </div>
+                </div>
+                 <div id="ButtonsFormRegisterUser">
+                    <a class="btn btn-md btn-primary" ui-sref="main" ng-click="RetriveUserAccount.ClearData()">Cofnij</a>
+                    <a class="btn btn-md btn--success" ng-click="RetriveUserAccount.RetriveAccount()" ng-disabled="retrivingUserAccount.UserEmail.$error.required
+                    ||  retrivingUserAccount.UserEmail.$invalid || RetriveUserAccount.userAccountNotConfirmed || RetriveUserAccount.emailNotExists
+                    ||  RetriveUserAccount.unableRegister || RetriveUserAccount.showSuccess">Odzyskaj konto!</a>
+                </div>
+            </form>
+        </div>
+      </div>
+</section>
+<div class="clearfix"></div>

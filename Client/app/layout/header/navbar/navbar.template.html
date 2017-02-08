@@ -1,0 +1,32 @@
+<nav id="navigation-box">
+    <!-- Toggle for mobile menu mode -->
+    <a href='' id="navigation-toggle" ng-click="Navbar.toggleMoblileMenu()">
+        <span class="menu-icon">
+                    <span class="icon-toggle" role="button" aria-label="Toggle Navigation">
+                      <span class="lines"></span>
+        </span>
+        </span>
+    </a>
+
+    <ul id="navigation" class="hidden-c">
+      <li>
+          <a ui-sref="listRanking" href="">Ranking</a>
+      </li>
+        <li>
+            <a href="" ng-click="helpToggle=!helpToggle;">Pomoc</a>
+        </li>
+    </ul>
+
+</nav>
+<div id="helper" class="overlay overlay-hugeinc close" ng-class="{'open': helpToggle, 'close': !helpToggle}">
+
+            <section class="container">
+
+                <div class="col-sm-6 col-sm-offset-3">
+                    <button type="button" class="overlay-close" ng-click="helpToggle=!helpToggle">Close</button>
+                    <img style="max-width:100%" alt='iko1' src="assets/images/iko1.png"></img>
+
+                </div>
+
+            </section>
+        </div>
